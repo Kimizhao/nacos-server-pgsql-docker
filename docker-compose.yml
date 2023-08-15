@@ -1,0 +1,19 @@
+version: "3"
+services:
+  nacos:
+    image: 192.168.165.28:8083/nacos/nacos-server-pgsql:v2.2.3
+    container_name: nacos-pgsql
+    privileged: true
+    environment:
+      - PREFER_HOST_MODE=192.168.165.40
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=postgresql
+      - PGSQL_URL=jdbc:postgresql://192.168.165.40:5432/nacos_config222
+      - PGSQL_USERNAME=postgres
+      - PGSQL_PASSWORD=Xstudio@012
+    volumes:
+      - "~/nacos/logs/:/home/nacos/logs"
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    restart: always
